@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.Data;
+using SmartSchool.Dtos;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.Controllers
@@ -11,96 +13,95 @@ namespace SmartSchool.Controllers
     [Route("Api/[controller]")]
     public class AlunoController : ControllerBase
     {
-        private readonly SmartContext _context;
+        public readonly IRepository _repo;
+        public readonly IMapper _mapper;
 
-        public AlunoController(SmartContext context) { 
-            _context = context;
+        public AlunoController(IRepository repo, IMapper mapper)
+        {
+            _repo = repo;
+            //Injecao do Mapper
+            _mapper = mapper;
         }
-        
+
         //http://localhost:5000/api/aluno
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Alunos);
+            var alunos = _repo.GetAllAlunos(true);
+            //Vinculo do Mapper
+            return Ok(_mapper.Map<IEnumerable<AlunoDTO>>(alunos));
         }
 
         //http://localhost:5000/api/aluno/1
-        [HttpGet("{id:int}")]
+        [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
+            var aluno = _repo.GetAlunoById(id, false);
             if (aluno == null) return BadRequest("O Aluno não foi encontrado");
-            return Ok(aluno);
-        }
+            var alunoDTO = _mapper.Map<AlunoDTO>(aluno);
 
-        //http://localhost:5000/api/aluno/Marta
-        [HttpGet("{nome}")]
-        public IActionResult GetByName(string nome)
-        {
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Nome.Contains(nome));
-            if (aluno == null) return BadRequest("O Aluno não foi encontrado");
-            return Ok(aluno);
-        }
-
-        //http://localhost:5000/api/aluno/ByName?nome=Lucas&Sobrenome=Salgado
-        [HttpGet("ByName")]
-        public IActionResult GetByNameAndSobreNome(string nome, string Sobrenome)
-        {
-            var aluno = _context.Alunos.FirstOrDefault(a =>
-                a.Nome.Contains(nome) && a.SobreNome.Contains(Sobrenome)
-            );
-
-            if (aluno == null) return BadRequest("O Aluno não foi encontrado");
-            return Ok(aluno);
-        }
-
-        //http://localhost:5000/api/aluno/byId?id=1
-        [HttpGet("byId")]
-        public IActionResult GetByIdQueryString(int id)
-        {
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
-            if (aluno == null) return BadRequest("O Aluno não foi encontrado");
             return Ok(aluno);
         }
 
         [HttpPost]
-        public IActionResult Post(Aluno aluno)
+        public IActionResult Post(AlunoRegistrarDTO model)
         {
-            _context.Add(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+
+            var aluno = _mapper.Map<Aluno>(model);
+
+            _repo.Add(aluno);
+            if (_repo.SaveChanges())
+            {
+                return Created($"/api/aluno/{model.Id}", _mapper.Map<AlunoDTO>(aluno));
+            }
+            return BadRequest("Aluno não cadastrado");
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Patch(int id, Aluno aluno)
+        public IActionResult Patch(int id, AlunoRegistrarDTO model)
         {
-            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
-            if (alu == null) return BadRequest("Aluno não encontrado");
+            var aluno = _repo.GetAlunoById(id, false);
+            if (aluno == null) return BadRequest("Aluno não encontrado");
 
-            _context.Update(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+            _mapper.Map(model, aluno);
+
+            _repo.Update(aluno);
+            if (_repo.SaveChanges())
+            {
+                return Created($"/api/aluno/{model.Id}", _mapper.Map<AlunoDTO>(aluno));
+            };
+            return BadRequest("Aluno não atualizado");       
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Aluno aluno)
+        public IActionResult Put(int id, AlunoRegistrarDTO model)
         {
-            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
-            if (alu == null) return BadRequest("Aluno não encontrado");
-            _context.Update(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+            var aluno = _repo.GetAlunoById(id, false);
+            if (aluno == null) return BadRequest("Aluno não encontrado");
+
+            _mapper.Map(model, aluno);
+
+           _repo.Update(aluno);
+            if (_repo.SaveChanges())
+            {
+                return Created($"/api/aluno/{model.Id}", _mapper.Map<AlunoDTO>(aluno));
+            };
+            return BadRequest("Aluno não atualizado");
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var alu = _context.Alunos.FirstOrDefault(a => a.Id == id);
-            if (alu == null) return BadRequest("Aluno não encontrado");
-            _context.Remove(alu);
-            _context.SaveChanges();
+            var aluno = _repo.GetAlunoById(id, false);
+            if (aluno == null) return BadRequest("Aluno não encontrado");
 
-            return Ok();
+            _repo.Delete(aluno);
+            if (_repo.SaveChanges())
+            {
+                return Ok("Aluno deletado");
+            }
+
+            return BadRequest("Aluno não deletado");
         }
     }
 }

@@ -1,26 +1,11 @@
 using System;
 using System.Collections.Generic;
+using SmartSchool.WebAPI.Models;
 
-namespace SmartSchool.WebAPI.Models
+namespace SmartSchool.Dtos
 {
-    public class Aluno
+    public class AlunoRegistrarDTO
     {
-        public Aluno() { }
-        public Aluno(int id, 
-                     int matricula, 
-                     string nome, 
-                     string sobreNome, 
-                     string telefone,
-                     DateTime dataNascimento)
-        {
-            this.Id = id;
-            this.Matricula = matricula;
-            this.Nome = nome;
-            this.SobreNome = sobreNome;
-            this.Telefone = telefone;
-            this.DataNascimento = dataNascimento;
-
-        }
         public int Id { get; set; }
         public int Matricula { get; set; }
         public string Nome { get; set; }
@@ -32,5 +17,4 @@ namespace SmartSchool.WebAPI.Models
         public bool Ativo { get; set; } = true;
         public IEnumerable <AlunoDisciplina> AlunosDisciplinas { get; set; }
     }
-
 }
