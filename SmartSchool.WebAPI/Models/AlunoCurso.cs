@@ -1,5 +1,5 @@
 using System;
-using SmartSchool.Models;
+using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Models
 {

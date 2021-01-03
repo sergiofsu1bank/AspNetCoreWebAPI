@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using SmartSchool.WebAPI.Models;
 
-namespace SmartSchool.Models
+namespace SmartSchool.WebAPI.Models
 {
     public class Curso
     {

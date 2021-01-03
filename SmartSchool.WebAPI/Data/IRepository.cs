@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Data
@@ -9,6 +10,7 @@ namespace SmartSchool.WebAPI.Data
         void Delete<T>(T entity) where T : class;
         bool SaveChanges();
 
+        Task<Aluno[]> GetAllAlunosAsync(bool includeProfessor);
         Aluno[] GetAllAlunos(bool includeProfessor);
         Aluno[] GetAllAlunosByDisciplinaId(int alunoId, bool includeProfessor);
         Aluno GetAlunoById(int disciplinaId, bool includeProfessor);

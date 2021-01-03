@@ -51,6 +51,11 @@
             Nome do ALuno
             </sumary>
         </member>
+        <member name="T:SmartSchool.WebAPI.v1.Helpers.SmartSchoolProfile">
+            <summary>
+            Aplicação de estudo dotnet
+            </summary>
+        </member>
         <member name="T:SmartSchool.WebAPI.v2.Controllers.AlunoController">
             <summary>
             Aplicação de estudo dotnet

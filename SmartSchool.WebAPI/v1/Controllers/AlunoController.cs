@@ -4,8 +4,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.v1.Dtos;
 using SmartSchool.WebAPI.Models;
+using System.Threading.Tasks;
+using SmartSchool.WebAPI.v1.Dtos;
 
 namespace SmartSchool.WebAPI.v1.Controllers
 {
@@ -37,9 +38,9 @@ namespace SmartSchool.WebAPI.v1.Controllers
 
         //http://localhost:5000/api/aluno
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var alunos = _repo.GetAllAlunos(true);
+            var alunos = await _repo.GetAllAlunosAsync(true);
             //Vinculo do Mapper
             return Ok(_mapper.Map<IEnumerable<AlunoDTO>>(alunos));
         }

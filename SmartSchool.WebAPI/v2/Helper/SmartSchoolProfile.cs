@@ -1,9 +1,9 @@
 using AutoMapper;
-using SmartSchool.WebAPI.v1.Dtos;
-using SmartSchool.Helpers;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.v2.Dtos;
+using SmartSchool.WebAPI.Helpers;
 
-namespace SmartSchool.WebAPI.Helpers
+namespace SmartSchool.WebAPI.v2.Helpers
 {
     public class SmartSchoolProfile : Profile
     {
