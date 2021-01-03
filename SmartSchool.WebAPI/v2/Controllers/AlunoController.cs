@@ -4,7 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.v1.Dtos;
+using SmartSchool.WebAPI.v2.Dtos;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.v2.Controllers

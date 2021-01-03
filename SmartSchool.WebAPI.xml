@@ -68,5 +68,35 @@
             Versão 1 do meu controlador de Professores
             </summary>
         </member>
+        <member name="P:SmartSchool.WebAPI.v2.Dtos.AlunoDTO.Id">
+            <sumary>
+            Identificador e chave do Banco
+            </sumary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v2.Dtos.AlunoDTO.Matricula">
+            <sumary>
+            Chave do ALuno, para outros negõcios na Instituição
+            </sumary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.v2.Dtos.AlunoRegistrarDTO">
+            <sumary>
+            DTO de Aluno para registrar
+            </sumary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v2.Dtos.AlunoRegistrarDTO.Id">
+            <sumary>
+            Identificador e chave do Banco
+            </sumary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v2.Dtos.AlunoRegistrarDTO.Matricula">
+            <sumary>
+            Chave do ALuno, para outros negõcios na Instituição
+            </sumary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v2.Dtos.AlunoRegistrarDTO.Nome">
+            <sumary>
+            Nome do ALuno
+            </sumary>
+        </member>
     </members>
 </doc>
