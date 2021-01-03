@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartSchool.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:SmartSchool.WebAPI.v1.Controllers.AlunoController">
+            <summary>
+            Aplicação de estudo dotnet
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:SmartSchool.WebAPI.v1.Controllers.AlunoController.Get">
+            <summary>
+            Método responsavel para retornar todos os alunos
+            </summary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.v1.Controllers.ProfessorController">
+            <summary>
+            Versão 1 do meu controlador de Professores
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v1.Dtos.AlunoDTO.Id">
+            <sumary>
+            Identificador e chave do Banco
+            </sumary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v1.Dtos.AlunoDTO.Matricula">
+            <sumary>
+            Chave do ALuno, para outros negõcios na Instituição
+            </sumary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.v1.Dtos.AlunoRegistrarDTO">
+            <sumary>
+            DTO de Aluno para registrar
+            </sumary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v1.Dtos.AlunoRegistrarDTO.Id">
+            <sumary>
+            Identificador e chave do Banco
+            </sumary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v1.Dtos.AlunoRegistrarDTO.Matricula">
+            <sumary>
+            Chave do ALuno, para outros negõcios na Instituição
+            </sumary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.v1.Dtos.AlunoRegistrarDTO.Nome">
+            <sumary>
+            Nome do ALuno
+            </sumary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.v2.Controllers.AlunoController">
+            <summary>
+            Aplicação de estudo dotnet
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:SmartSchool.WebAPI.v2.Controllers.AlunoController.Get">
+            <summary>
+            Método responsavel para retornar todos os alunos
+            </summary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.v2.Controllers.ProfessorController">
+            <summary>
+            Versão 1 do meu controlador de Professores
+            </summary>
+        </member>
+    </members>
+</doc>

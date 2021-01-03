@@ -2,18 +2,19 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SmartSchool.WebAPI.Data;
+using SmartSchool.WebAPI.v1.Dtos;
 using SmartSchool.WebAPI.Models;
-using SmartSchool.Data;
-using SmartSchool.Dtos;
 
-namespace SmartSchool.WebAPI.V1.Controllers
+namespace SmartSchool.WebAPI.v1.Controllers
 {
     /// <summary>
     /// Versão 1 do meu controlador de Professores
     /// </summary>
     [ApiController]
-    //[ApiVersion("1.0")]
-    [Route("Api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProfessorController : ControllerBase
     {
         private readonly IRepository _repo;
@@ -44,7 +45,7 @@ namespace SmartSchool.WebAPI.V1.Controllers
             var Professor = _repo.GetProfessorById(id, true);
             if (Professor == null) return BadRequest("O Professor não foi encontrado");
 
-            var professorDto = _mapper.Map<ProfessorDTO>(Professor);
+            var professorDTO = _mapper.Map<ProfessorDTO>(Professor);
 
             return Ok(Professor);
         }

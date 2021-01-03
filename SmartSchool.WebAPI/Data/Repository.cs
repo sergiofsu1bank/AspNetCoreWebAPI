@@ -1,9 +1,8 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Models;
 
-namespace SmartSchool.Data
+namespace SmartSchool.WebAPI.Data
 {
     public class Repository : IRepository
     {

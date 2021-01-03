@@ -3,14 +3,22 @@ using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SmartSchool.Data;
-using SmartSchool.Dtos;
+using SmartSchool.WebAPI.Data;
+using SmartSchool.WebAPI.v1.Dtos;
 using SmartSchool.WebAPI.Models;
 
-namespace SmartSchool.Controllers
+namespace SmartSchool.WebAPI.v1.Controllers
 {
+    /// <summary>
+    /// Aplicação de estudo dotnet
+    /// </summary>
+
+    /// <param name="repo"></param>
+    /// <param name="mapper"></param>
+
     [ApiController]
-    [Route("Api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class AlunoController : ControllerBase
     {
         public readonly IRepository _repo;
@@ -22,6 +30,10 @@ namespace SmartSchool.Controllers
             //Injecao do Mapper
             _mapper = mapper;
         }
+
+        /// <summary>
+        /// Método responsavel para retornar todos os alunos
+        /// </summary>
 
         //http://localhost:5000/api/aluno
         [HttpGet]

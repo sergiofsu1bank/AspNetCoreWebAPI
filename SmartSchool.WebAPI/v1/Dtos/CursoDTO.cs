@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SmartSchool.Dtos
+namespace SmartSchool.WebAPI.v1.Dtos
 {
     public class CursoDTO
     {
