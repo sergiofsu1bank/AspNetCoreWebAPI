@@ -4,6 +4,11 @@
         <name>SmartSchool.WebAPI</name>
     </assembly>
     <members>
+        <member name="T:SmartSchool.WebAPI.Helpers.PageList`1">
+            <summary>
+            Aplicação de estudo dotnet
+            </summary>
+        </member>
         <member name="T:SmartSchool.WebAPI.v1.Controllers.AlunoController">
             <summary>
             Aplicação de estudo dotnet
@@ -11,7 +16,7 @@
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:SmartSchool.WebAPI.v1.Controllers.AlunoController.Get">
+        <member name="M:SmartSchool.WebAPI.v1.Controllers.AlunoController.Get(SmartSchool.WebAPI.Helpers.PageParams)">
             <summary>
             Método responsavel para retornar todos os alunos
             </summary>
