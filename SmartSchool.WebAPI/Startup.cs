@@ -34,7 +34,7 @@ namespace SmartSchool.WebAPI
 
             IServiceCollection serviceCollection = services.AddDbContext<Data.SmartContext>
             (
-                context => context.UseSqlite(Configuration.GetConnectionString("Default"))
+               context => context.UseMySql(Configuration.GetConnectionString("MySqlConnection"))
             );
 
 
